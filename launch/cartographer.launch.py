@@ -10,7 +10,20 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     pkg_share_dir = get_package_share_directory('cartographer_slam')
+    
     # TODO: there was a preferred way to avoid using os.path.join()
+    # Example: https://github.com/ivogeorg/attach_shelf/blob/b511e89921b100bcaad62dd5f4291d8397f8be35/launch/attach_to_shelf.launch.py#L5
+    # from launch_ros.substitutions import FindPackageShare
+    #     approach_service_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource([
+    #         PathJoinSubstitution([
+    #             FindPackageShare(ros2_pkg),
+    #             'launch',
+    #             'approach_service.launch.py'
+    #         ])
+    #     ])
+    # )
+
     config_dir_arg = DeclareLaunchArgument("configuration_directory", default_value=os.path.join(pkg_share_dir, 'config'))
     config_basename_arg = DeclareLaunchArgument("configuration_basename", default_value="cartographer.lua")
 
